@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html >
+<head>
+  	<meta charset="UTF-8">
+    <link rel="stylesheet" href="css/myapp.css">
+    <title>The Wiw Test</title>
+    <link rel="stylesheet" href="https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.1-master-a687bfc/angular-material.css">
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-blue.min.css">
+</head>
+<body ng-app='refs' ng-controller="RefsController">
+<div layout="column">
+    <md-toolbar layout="row" layout-align="center">
+        <div class="md-toolbar-tools" flex-gt-md="60" flex-md="80" flex-sm="100">
+            <span>Liste des références</span>           
+        </div>
+    </md-toolbar>
+    <md-content layout-padding layout="row" layout-align="center">
+        <div flex-gt-md="60" flex-md="80" flex-xs="100">
+            <div layout-gt-xs="row" layout-xs="column" layout-align="stretch center">
+                <div  layout="row" layout-align="center start">
+                    <md-input-container md-no-float md-is-error="false" class="md-block flex-gt-xs flex-xs">
+                        <input  ng-model="query" placeholder="Rechercher" class="md-input"  >
+                    </md-input-container>
+                </div>
+            </div>
+            <div grid-data grid-options="gridOptions" grid-actions="gridActions">
+                <div>
+                    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                        <thead>
+                        <tr>
+                            <th><span>Réference</span></th>
+                            <th><span>Type d'unité</span></th>
+                            <th><span>Description</span></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="(key, ref) in lists | filter:query "
+        					ng-if="key != 0" ng-click="details($event,ref[0])">
+                            <td ng-bind="ref[0]">{{ref}}</td>
+                            <td ng-bind="ref[1]"></td>
+                            <td ng-bind="ref[2]"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </md-content>
+</div>
+<!-- La pop up -->
+<script type="text/ng-template" id="reference_detail.tmpl.html">
+	<md-dialog aria-label="element[0]">
+		<!-- Header de la popup -->
+	    <md-toolbar>
+	      <div class="md-toolbar-tools">
+	        <h2>Détails de l'unité : {{element[0]}}</h2>
+	        <span flex></span>
+	        <md-button class="md-icon-button" ng-click="cancel()">
+	          <ng-md-icon icon="close" style="fill: white" size="24" aria-label="Fermer la popoup"></ng-md-icon>
+	        </md-button>
+	      </div>
+	    </md-toolbar>
+	    <!-- Contenu de la popup -->
+	    <md-dialog-content>
+			    <md-card md-theme="default" md-theme-watch="" flex="100" class="custom">
+		        <md-card-title>
+		          <md-card-title-media>
+		            <div class="card-media"> 
+		            	<img ng-src="{{element[3]}}" class="md-card-image" alt="Réference image" >
+		            </div>
+		          </md-card-title-media>
+		        </md-card-title>
+		 		<md-card-content>
+		 			<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+			 			<tr ng-repeat="(key,header) in headers  track by $index">
+			 				<td> {{header}}</td>
+			 				<td>{{element[key]}}</td>
+			 			</tr>
+		 			</table>
+		 		</md-card-content>
+		      </md-card>
+	    </md-dialog-content>
+	</md-dialog>
+</script>
+</body>
+	<script type="text/javascript" src="lib/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="lib/angular.min.js"></script>
+	<script type="text/javascript" src="lib/angular-resource.js"></script>
+	<script type="text/javascript" src="app/app.js"></script>
+	<script type="text/javascript" src="app/controllers/refs_controller.js"></script>
+	<script type="text/javascript" src="app/services/ref.js"></script>
+	<script type="text/javascript" src="lib/csvtoarray.js"></script>
+	<script type="text/javascript" src="lib/angular-animate.min.js"></script>
+	<script type="text/javascript" src="lib/angular-aria.min.js"></script>
+	<script type="text/javascript" src="lib/angular-messages.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+	<script src="http://angular-data-grid.github.io/dist/dataGrid.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.7.1/angular-material-icons.min.js"></script> 
+</html>

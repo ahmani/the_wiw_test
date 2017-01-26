@@ -1,0 +1,40 @@
+table{
+	width: 50%;
+    float: left;
+}
+
+input{
+    width: 21%;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    padding: 12px 20px 12px 40px;
+}
+
+.search-field {
+    text-align: center;
+    height: 78px;
+}
+
+.details {
+    width: 34%;
+    padding: 1%;
+    border: 1px solid gray;
+    border-radius: 18px;
+    float: left;
+    margin-left: 10%;
+}
+.mdl-data-table th {
+    text-align: center !important;
+}
+.mdl-data-table td {
+    text-align: center !important;
+}    
+.custom md-card-title{
+    margin: 0 auto;
+    padding: 0;
+    display: table; 
+}
+.custom .card-media {
+    height: auto !important;
+    width: 220px;
+}

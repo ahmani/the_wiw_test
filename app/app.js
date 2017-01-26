@@ -1,0 +1,1 @@
+angular.module('refs', ['ngResource','dataGrid', 'ngMaterial', 'ngMessages','ngMdIcons']);
